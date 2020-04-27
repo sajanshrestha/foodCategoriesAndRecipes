@@ -19,6 +19,7 @@ struct RecipeList: View {
         NavigationView {
             List(recipes) { recipe in
                 RecipeRow(recipe: recipe)
+                    .frame(height: 300)
             }
             .navigationBarTitle(Text("Recipes"), displayMode: .inline)
             .onAppear {
@@ -51,8 +52,10 @@ extension RecipeList {
     }
 }
 
+#if DEBUG
 struct RecipeList_Previews: PreviewProvider {
     static var previews: some View {
-        RecipeList()
+        RecipeList().environmentObject(database)
     }
 }
+#endif
