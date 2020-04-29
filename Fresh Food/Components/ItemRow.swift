@@ -13,20 +13,16 @@ struct ItemRow: View {
     var item: Item
     
     var body: some View {
-        ZStack {
-            LinearGradient(gradient: Gradient(colors: [.yellow, .orange, .pink, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                
-            HStack {
-                Text(item.name ?? "")
-                Spacer()
-                Text("\(item.quantity)")
-                    .font(.subheadline)
-                    .bold()
-                    .foregroundColor(item.quantity <= 3 ? .red : .green)
-            }.padding()
+        
+        HStack {
+            Text(item.name ?? "")
+            Spacer()
+            Text("\(item.quantity)")
+                .font(.subheadline)
+                .bold()
+                .foregroundColor(item.quantity <= 3 ? .red : .green)
         }
+        
     }
 }
 

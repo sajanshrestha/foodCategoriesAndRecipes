@@ -12,7 +12,10 @@ struct ListView: View {
     
     @State private var name = ""
     @State private var quantity = ""
-        
+    
+    @State private var showAlert = false
+       
+    // CORE DATA 
     @Environment(\.managedObjectContext) var context
     
     @FetchRequest(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.name, ascending: true)]) var items: FetchedResults<Item>
@@ -32,10 +35,18 @@ struct ListView: View {
                         })
                     }.onDelete(perform: delete)
                 }
-            }
+            } 
             .navigationBarTitle("Grocery List", displayMode: .inline)
             .navigationBarItems(trailing: Image(systemName: "plus").onTapGesture {
                 self.addItem()
+            })
+            .onAppear {
+                let itemNames = self.items.map { $0.name ?? ""}
+                UserPreference.setSelectedIngredients(from: itemNames)
+
+            }
+            .alert(isPresented: $showAlert, content: {
+                Alert(title: Text("Fields Empty"), message: Text("Please Enter Both Name And Quantity"), dismissButton: .default(Text("Ok")))
             })
         }
     }
@@ -44,7 +55,10 @@ struct ListView: View {
 extension ListView {
     
     func addItem() {
-        guard !name.isEmpty && !quantity.isEmpty else {return}
+        guard !name.isEmpty && !quantity.isEmpty else {
+            self.showAlert = true
+            return
+        }
         
         let item = Item(context: self.context)
         item.id = UUID()
@@ -53,6 +67,7 @@ extension ListView {
         item.purchasedDate = Date()
         
         saveItem()
+
     }
     
     func delete(at offsets: IndexSet) {
@@ -63,6 +78,7 @@ extension ListView {
         saveItem()
     }
     
+    
     func saveItem() {
         do {
             try self.context.save()
@@ -70,7 +86,10 @@ extension ListView {
         catch {
             print("error saving item!")
         }
+        let itemNames = items.map {$0.name ?? ""}
+        UserPreference.setSelectedIngredients(from: itemNames)
     }
+  
 }
 
 struct ListView_Previews: PreviewProvider {

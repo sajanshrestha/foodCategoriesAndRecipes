@@ -40,7 +40,7 @@ struct RecipeList: View {
                 }))
                 }.padding()
             .onAppear {
-                //self.fetchRecipeList()
+                self.fetchRecipeList()
             }
         }
     }
@@ -48,21 +48,11 @@ struct RecipeList: View {
 
 extension RecipeList {
     
-    func getRandomlySelectedNames() -> [String] {
-        var itemNames = items.map { $0.name }
-        var randomlySelectedItemNames = [String]()
-        
-        for _ in 1...2 {
-            let randomName = itemNames.randomElement() ?? "chicken"
-            randomlySelectedItemNames.append(randomName ?? "chicken")
-            itemNames.removeAll { $0 == randomName}
-        }
-        return randomlySelectedItemNames
-    }
-    
     func fetchRecipeList() {
         
-        let randomlySelectedItemNames = self.getRandomlySelectedNames()
+        guard let selectedIngredients = UserPreference.selectedIngredients else {return}
+        
+        let randomlySelectedItemNames = selectedIngredients
         self.selectedIngredients = randomlySelectedItemNames.joined(separator: " and ")
         
         self.recipes = []
