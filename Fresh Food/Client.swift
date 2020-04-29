@@ -17,22 +17,9 @@ class Client {
     static private let appKey = "508f411c9deb88d2138fe738dff1686c"
     
     
-    static func getRecipeList(of items: [String], completion: @escaping ([Recipe]) -> Void) {
+    static func getRecipeList(of selectedIngredients: [String], completion: @escaping ([Recipe]) -> Void) {
         
-        guard var urlComponents = URLComponents(string: baseUrl) else {return}
-        
-        urlComponents.queryItems = [
-            URLQueryItem(name: "app_id", value: appId),
-            URLQueryItem(name: "app_key", value: appKey),
-            URLQueryItem(name: "from", value: "0"),
-            URLQueryItem(name: "to", value: "5"),
-        ]
-        
-        let queryItems = items.map { URLQueryItem(name: "q", value: $0) }
-        
-        urlComponents.queryItems?.append(contentsOf: queryItems)
-        
-        guard let url = urlComponents.url else {return}
+        guard let url = getUrl(queries: selectedIngredients) else {return}
         
         let session = URLSession(configuration: .default)
         
@@ -49,9 +36,30 @@ class Client {
         
     }
     
+    static func getUrl(queries items: [String]) -> URL? {
+        guard var urlComponents = URLComponents(string: baseUrl) else {return nil}
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "app_id", value: appId),
+            URLQueryItem(name: "app_key", value: appKey),
+            URLQueryItem(name: "from", value: "0"),
+            URLQueryItem(name: "to", value: "5"),
+        ]
+        let queryItems = items.joined(separator: "+")
+        
+        urlComponents.queryItems?.append(URLQueryItem(name: "q", value: queryItems))
+        
+        guard let url = urlComponents.url else {return nil}
+        
+        return url
+    }
+    
     static func getImage(url: String, completion: @escaping (UIImage) -> Void) {
+        
         let session = URLSession(configuration: .default)
+        
         guard let url = URL(string: url) else {return}
+        
         let task = session.dataTask(with: url) { (data, response, error) in
             guard let data = data else {return}
             guard let image = UIImage(data: data) else {return}

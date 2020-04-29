@@ -18,19 +18,16 @@ struct HomeView: View {
                 })
             RecipeList()
                 .tabItem({
-                    Image(systemName: "waveform.path.ecg")
+                    Image(systemName: "r.circle")
                     Text("Recipes")
                 })
         }
     }
 }
 
-#if DEBUG
-var database = MockDatabase()
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(database)
+        HomeView()
     }
 }
-#endif
 

@@ -14,25 +14,24 @@ struct DetailView: View {
     
     var body: some View {
         VStack {
-            ItemInfoRow(infoTitle: "Item", infoValue: item.name)
+            ItemInfoRow(infoTitle: "Item", infoValue: item.name ?? "")
             ItemInfoRow(infoTitle: "Quantity", infoValue: "\(item.quantity)")
-            ItemInfoRow(infoTitle: "Date", infoValue: item.purchasedDate.getMediumFormat())
-            ItemInfoRow(infoTitle: "Category", infoValue: item.category.rawValue)
+            ItemInfoRow(infoTitle: "Date", infoValue: item.purchasedDate!.getMediumFormat())
+            
         }
         .padding(.horizontal)
     }
 }
 
+#if DEBUG
+let item = Item()
+
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(item: Item(name: "Apple", quantity: 23, purchasedDate: Date()))
+        item.name = "Apple"
+        item.quantity = 3
+        item.purchasedDate = Date()
+        return DetailView(item: item)
     }
 }
-
-extension Date {
-    func getMediumFormat() -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        return formatter.string(from: self)
-    }
-}
+#endif

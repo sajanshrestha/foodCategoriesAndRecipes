@@ -24,7 +24,7 @@ struct RecipeRow: View {
                 
                 VStack(alignment: .leading) {
                     
-                    Text("\(Int(self.recipe.totalTime)) mins")
+                    Text(self.getFormattedTimeDuration(Int(self.recipe.totalTime) ))
                         .font(.subheadline)
                         .foregroundColor(.white)
                         .bold()
@@ -37,7 +37,7 @@ struct RecipeRow: View {
                     NavigationLink(destination: RecipeDetailView(url: self.recipe.url), label: {
                         Text("See Detail").foregroundColor(.blue).bold()
                     })
-                }.padding()
+                    }.padding().background(Color.black.opacity(0.3)).cornerRadius(10)
             }
         }
         .onAppear {
@@ -53,5 +53,27 @@ struct RecipeRow_Previews: PreviewProvider {
     static var previews: some View {
         RecipeRow(recipe: Recipe(label: "Aalu Paratha", image: "image1", url: "", calories: 200, totalTime: 120.0))
             .frame(height: 300)
+    }
+}
+
+extension RecipeRow {
+    func getFormattedTimeDuration(_ minutes: Int) -> String {
+        var result = ""
+        
+        let hours = minutes / 60
+        let minutes = minutes % 60
+        
+        switch (hours == 0, minutes == 0) {
+        case (true, true):
+            result = "Time Undetermined"
+        case (true, false):
+            result = "\(minutes)min"
+        case (false, true):
+            result = "\(hours)hr"
+        default:
+            result = "\(hours)hr \(minutes)min"
+        }
+        
+        return result
     }
 }

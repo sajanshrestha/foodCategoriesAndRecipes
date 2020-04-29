@@ -19,3 +19,11 @@ extension String {
         return array[0] + "s:" + array[1]
     }
 }
+
+extension Date {
+    func getMediumFormat() -> String {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter.string(from: self)
+    }
+}
