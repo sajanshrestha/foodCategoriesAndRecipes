@@ -17,7 +17,6 @@ struct DetailView: View {
             ItemInfoRow(infoTitle: "Item", infoValue: item.name ?? "")
             ItemInfoRow(infoTitle: "Quantity", infoValue: "\(item.quantity)")
             ItemInfoRow(infoTitle: "Date", infoValue: item.purchasedDate!.getMediumFormat())
-            
         }
         .padding(.horizontal)
     }

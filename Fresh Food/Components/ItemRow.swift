@@ -16,6 +16,7 @@ struct ItemRow: View {
         
         HStack {
             Text(item.name ?? "")
+                .font(Font.custom("Comic Sans MS", size: 20))
             Spacer()
             Text("\(item.quantity)")
                 .font(.subheadline)

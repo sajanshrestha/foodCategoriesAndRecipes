@@ -15,10 +15,13 @@ struct ListView: View {
     
     @State private var showAlert = false
        
-    // CORE DATA 
     @Environment(\.managedObjectContext) var context
     
-    @FetchRequest(entity: Item.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Item.name, ascending: true)]) var items: FetchedResults<Item>
+    @FetchRequest(
+        entity: Item.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Item.name,
+                             ascending: true)]) var items: FetchedResults<Item>
     
     var body: some View {
         
@@ -43,6 +46,7 @@ struct ListView: View {
             .onAppear {
                 let itemNames = self.items.map { $0.name ?? ""}
                 UserPreference.setSelectedIngredients(from: itemNames)
+                print("List View : \(UserPreference.selectedIngredients ?? [])")
 
             }
             .alert(isPresented: $showAlert, content: {
@@ -55,6 +59,7 @@ struct ListView: View {
 extension ListView {
     
     func addItem() {
+        
         guard !name.isEmpty && !quantity.isEmpty else {
             self.showAlert = true
             return

@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 
+// asssits in keeping track of user preferences; right now it keeps track of selectedIngrediets for the recipe
 struct UserPreference {
     
     private static let defaults = UserDefaults.standard
@@ -20,8 +21,9 @@ struct UserPreference {
         return defaults.stringArray(forKey: SELECTED_INGREDIENTS)
     }
     
-    static private func setSelectedIngredients(_ itemNames: [String]) {
-        defaults.set(itemNames, forKey: SELECTED_INGREDIENTS)
+    // sets the selected item names to user defaults
+    static private func setSelectedIngredients(_ selectedItems: [String]) {
+        defaults.set(selectedItems, forKey: SELECTED_INGREDIENTS)
     }
     
     // takes input of item names and set the selected items of the user defaults accordingly
@@ -35,6 +37,10 @@ struct UserPreference {
         else {
             checkAndModifySelectedItemNamesIfNeeded(items: itemNames)
         }
+    }
+    
+    static func setUserPickedIngredients(_ itemNames: [String]) {
+        setSelectedIngredients(itemNames)
     }
     
     private static func checkAndModifySelectedItemNamesIfNeeded(items: [String]) {
