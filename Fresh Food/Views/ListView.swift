@@ -46,7 +46,6 @@ struct ListView: View {
             .onAppear {
                 let itemNames = self.items.map { $0.name ?? ""}
                 UserPreference.setSelectedIngredients(from: itemNames)
-                print("List View : \(UserPreference.selectedIngredients ?? [])")
 
             }
             .alert(isPresented: $showAlert, content: {

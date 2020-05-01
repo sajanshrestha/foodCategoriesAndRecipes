@@ -13,23 +13,32 @@ struct SelectionView: View {
     @Binding var slideSelectionView: Bool
     @Binding var selectedIngredientOne: Int
     @Binding var selectedIngredientTwo: Int
-
+    
     @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
     
     var body: some View {
         
         let itemNames = items.map {$0.name ?? ""}
-        return Form {
-            Picker(selection: $selectedIngredientOne, label: Text("Ingredient 1")) {
+        return VStack {
+            Picker(selection: $selectedIngredientOne, label: Image(systemName: "1.circle").font(.title)) {
                 ForEach(0 ..< itemNames.count) {
                     Text(itemNames[$0])
+                        .foregroundColor(.white)
                 }
-            }
-            Picker(selection: $selectedIngredientTwo, label: Text("Ingredient 2")) {
+            }.foregroundColor(.white)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.green))
+                .padding()
+            
+            Picker(selection: $selectedIngredientTwo, label: Image(systemName: "2.circle").font(.title)) {
                 ForEach(0 ..< itemNames.count) {
                     Text(itemNames[$0])
+                        .foregroundColor(.white)
                 }
-            }
+            }.foregroundColor(.white)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.green))
+                .padding()
             
         }
         .animation(.spring())

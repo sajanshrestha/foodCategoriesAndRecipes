@@ -6,69 +6,78 @@
 //  Copyright © 2020 Sajan Shrestha. All rights reserved.
 //
 
-import SwiftUI
-
-struct DemoView: View {
-    
-    var instructions = [
-        "Cut Fruits",
-        "Take a bowl",
-        "Decorate bowl with fruits"
-    ]
-    
-    @State private var slideSelectionView = false
-    
-    var ingredients = ["apple", "bacon", "cheese"]
-    @State private var selectedIngredientOne = 0
-    @State private var selectedIngredientTwo = 2
-
-    
-    var body: some View {
-        
-        
-        ZStack {
-            VStack {
-                HStack {
-                    Text("Recipes")
-                    Spacer()
-                    Button("Change") {
-                        self.slideSelectionView.toggle()
-                    }
-                }.padding()
-                List(instructions.indices, id: \.self) { index in
-                    Text(self.instructions[index])
-                        .foregroundColor(index % 2 == 0 ? .blue : .black)
-                        .bold()
-                    
-                }
-            }
-            NavigationView {
-                Form {
-                    Picker(selection: $selectedIngredientOne, label: Text("Ingredient 1")) {
-                        ForEach(0 ..< ingredients.count) {
-                            Text(self.ingredients[$0])
-                        }
-                    }
-                    Picker(selection: $selectedIngredientTwo, label: Text("Ingredient 2")) {
-                        ForEach(0 ..< ingredients.count) {
-                            Text(self.ingredients[$0])
-                        }
-                    }
-                    Button("Submit") {
-                        self.slideSelectionView = false
-                    }
-                    
-                }
-            }
-                .animation(.spring())
-                .offset(x: slideSelectionView ? 0 : UIScreen.main.bounds.width, y: 0)
-        }
-        
-    }
-}
-
-struct RecipeDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        DemoView()
-    }
-}
+//import SwiftUI
+//
+//class DietFilter: ObservableObject {
+//    @Published var balanced = true
+//    @Published var vegan = true
+//    @Published var vegetarian = true
+//    @Published var sugarConsious = true
+//    @Published var highProtein = true
+//    @Published var peanutFree = true
+//    @Published var treeNutFree = true
+//}
+//
+//struct DemoView: View {
+//    
+//    @EnvironmentObject var filter: DietFilter
+//
+//    @State private var ingredientOne = 0
+//    @State private var ingredientTwo = 0
+//    
+//    var ingredients = ["Apple", "Cherry", "Chicken"]
+//
+//    
+//    var body: some View {
+//        NavigationView {
+//            Form {
+//                
+//                Section(header: Text("Pick Upto Two Ingredients")) {
+//                    Picker(selection: $ingredientOne, label: Text("Ingredient One")) {
+//                        ForEach(0...ingredients.count, id: \.self) { index in
+//                            Text(self.ingredients[index])
+//                        }
+//                    }
+//                    Picker(selection: $ingredientTwo, label: Text("Ingredient One")) {
+//                        ForEach(0...ingredients.count, id: \.self) { index in
+//                            Text(self.ingredients[index])
+//                        }
+//                    }
+//                }
+//                Section(header: Text("Health and Allergen Filters")) {
+//                    Toggle(isOn: $filter.$balanced, label: {
+//                        Text("Balanced")
+//                    })
+//                    Toggle(isOn: $filter.vegan, label: {
+//                        Text("Vegan")
+//                    })
+//                    
+//                    Toggle(isOn: $filter.vegetarian, label: {
+//                        Text("Vegetarian")
+//                    })
+//                    
+//                    Toggle(isOn: $filter.sugarConsious, label: {
+//                        Text("Sugar Consious")
+//                    })
+//                    
+//                    Toggle(isOn: $filter.highProtein, label: {
+//                        Text("High Protein")
+//                    })
+//                    Toggle(isOn: $filter.peanutFree, label: {
+//                        Text("Peanut Free")
+//                    })
+//                    Toggle(isOn: $filter.treeNutFree, label: {
+//                        Text("Tree Nut free")
+//                    })
+//                }
+//            }
+//        }
+//        
+//    }
+//}
+//
+//struct RecipeDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DemoView()
+//    }
+//}
