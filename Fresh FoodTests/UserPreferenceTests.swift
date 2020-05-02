@@ -21,7 +21,7 @@ class UserPreferenceTests: XCTestCase {
 
     func test_Names_AfterRandomlySelected_ShoudBeUniqueRandomNames() throws {
         let items = ["chicken", "banana", "avocado"]
-        let randomNames = UserPreference.getRandomItemNamesFromList(items: items)
+        let randomNames = IngredientManager.getRandomItemNamesFromList(items: items)
         XCTAssertTrue(randomNames.contains("chicken") || randomNames.contains("banana"))
     }
 

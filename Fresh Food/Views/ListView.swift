@@ -17,6 +17,8 @@ struct ListView: View {
        
     @Environment(\.managedObjectContext) var context
     
+    @EnvironmentObject var userPreference: UserPreference
+    
     @FetchRequest(
         entity: Item.entity(),
         sortDescriptors: [
@@ -38,14 +40,16 @@ struct ListView: View {
                         })
                     }.onDelete(perform: delete)
                 }
-            } 
+            }
             .navigationBarTitle("Grocery List", displayMode: .inline)
             .navigationBarItems(trailing: Image(systemName: "plus").onTapGesture {
                 self.addItem()
             })
             .onAppear {
                 let itemNames = self.items.map { $0.name ?? ""}
-                UserPreference.setSelectedIngredients(from: itemNames)
+                
+                IngredientManager.manageSelectedIngredients(from: itemNames)
+                self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
 
             }
             .alert(isPresented: $showAlert, content: {
@@ -91,7 +95,7 @@ extension ListView {
             print("error saving item!")
         }
         let itemNames = items.map {$0.name ?? ""}
-        UserPreference.setSelectedIngredients(from: itemNames)
+        IngredientManager.manageSelectedIngredients(from: itemNames)
     }
   
 }
@@ -101,3 +105,4 @@ struct ListView_Previews: PreviewProvider {
         ListView()
     }
 }
+

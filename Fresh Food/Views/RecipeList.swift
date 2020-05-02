@@ -6,18 +6,14 @@
 //  Copyright © 2020 Sajan Shrestha. All rights reserved.
 //
 
+
 import SwiftUI
 
 struct RecipeList: View {
     
     @State private var recipes = [Recipe]()
     
-    
-    @State private var selectedIngredients = ""
-    @State private var selectedIngredientOne = 0
-    @State private var selectedIngredientTwo = 0
-    
-    @State private var slideSelectionView = false
+    @EnvironmentObject var userPreference: UserPreference
     
     @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
     
@@ -27,39 +23,26 @@ struct RecipeList: View {
         let itemNames = items.map {$0.name ?? ""}
         
         return NavigationView {
-            ZStack {
-                VStack {
-                    HStack {
-                        Text("\(selectedIngredients) Recipes").bold().padding().font(Font.custom("Comic Sans MS Bold", size: 20))
-                        Spacer()
-                    }
-                    
-                    
-                    List(recipes) { recipe in
-                        RecipeRow(recipe: recipe)
-                            .frame(height: 300)
-                    }
-                    .navigationBarTitle(Text("Recipes"), displayMode: .inline)
-                    .navigationBarItems(trailing: Button(action: {
-                        if self.slideSelectionView {
-                            UserPreference.setUserPickedIngredients([itemNames[self.selectedIngredientOne], itemNames[self.selectedIngredientTwo]])
-                            self.setRecipeTitle()
-                            //self.fetchRecipeList()
-                        }
-                        self.slideSelectionView.toggle()
-                        
-                    }, label: {
-                        Text(slideSelectionView ? "Done": "Change")
-                    }))
-                }.padding()
-                    .opacity(slideSelectionView ? 0.3 : 1)
-                    .blur(radius: slideSelectionView ? 1 : 0)
-                .onAppear {
-                        self.setRecipeTitle()
-                        //self.fetchRecipeList()
-                        self.setUpSelectedIngredientIndex()
+            VStack {
+                HStack {
+                    Text("\(userPreference.selectedIngredients.joined(separator: " and ")) Recipes").bold().padding().font(Font.custom("Comic Sans MS Bold", size: 20))
+                    Spacer()
                 }
-                SelectionView(slideSelectionView: $slideSelectionView, selectedIngredientOne: $selectedIngredientOne, selectedIngredientTwo: $selectedIngredientTwo)
+                
+                
+                List(recipes) { recipe in
+                    RecipeRow(recipe: recipe)
+                        .frame(height: 300)
+                }
+                .navigationBarTitle(Text("Recipes"), displayMode: .inline)
+                .navigationBarItems(trailing: NavigationLink(destination: SelectionView(itemNames: itemNames), label: {
+                    Text("Customize")
+                }))
+            }.padding()
+                .onAppear {
+                    print("recipe list")
+                    self.setRecipeTitle()
+                    //self.fetchRecipeList()
             }
         }
     }
@@ -71,7 +54,7 @@ extension RecipeList {
     
     func fetchRecipeList() {
         
-        guard let selectedIngredients = UserPreference.selectedIngredients else {return}
+        guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
         
         self.recipes.removeAll()
         
@@ -84,30 +67,9 @@ extension RecipeList {
     
     func setRecipeTitle() {
         
-        guard let selectedIngredients = UserPreference.selectedIngredients else {return}
-        self.selectedIngredients = selectedIngredients.joined(separator: " and ")
+        guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
+        userPreference.selectedIngredients = selectedIngredients
     }
-    
-    func setUpSelectedIngredientIndex() {
-        
-        let itemNames = items.map {$0.name ?? ""}
-        
-        guard let selectedIngredients = UserPreference.selectedIngredients else {return}
-        
-        let indexOne = itemNames.firstIndex { string in
-            string == selectedIngredients[0]
-        }
-        
-        let indexTwo = itemNames.firstIndex { string in
-            string == selectedIngredients[1]
-        }
-        
-        self.selectedIngredientOne = indexOne ?? 0
-        self.selectedIngredientTwo = indexTwo ?? 0
-
-
-    }
-    
 }
 
 struct RecipeList_Previews: PreviewProvider {
@@ -115,3 +77,5 @@ struct RecipeList_Previews: PreviewProvider {
         RecipeList()
     }
 }
+
+
