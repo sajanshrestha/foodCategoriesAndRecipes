@@ -23,11 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext else {
             print("Unable to read managed object context")
-            return
+            return                   
         }
         
         let filter = FilterManager.getFilters()
-        let userPreference = UserPreference(dietFilter: filter)
+        let userPreference = UserPreference(filter: filter)
         
         
         let contentView = HomeView().environment(\.managedObjectContext, context).environmentObject(userPreference)

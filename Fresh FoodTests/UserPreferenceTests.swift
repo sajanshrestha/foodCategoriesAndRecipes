@@ -19,12 +19,6 @@ class UserPreferenceTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_Names_AfterRandomlySelected_ShoudBeUniqueRandomNames() throws {
-        let items = ["chicken", "banana", "avocado"]
-        let randomNames = IngredientManager.getRandomItemNamesFromList(items: items)
-        XCTAssertTrue(randomNames.contains("chicken") || randomNames.contains("banana"))
-    }
-
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {

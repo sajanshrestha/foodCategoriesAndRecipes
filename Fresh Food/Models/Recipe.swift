@@ -21,11 +21,9 @@ struct RecipeInfo: Codable {
 struct Recipe: Identifiable, Codable {
     
     let id = UUID()
-    let label: String
-    let image: String
-    let url: String
-    let calories: Double
-    let totalTime: Double
+    let label, image, url: String
+    let calories, totalTime: Double
+    
     
     var formattedTime: String {
         var result = ""

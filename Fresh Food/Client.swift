@@ -17,9 +17,32 @@ class Client {
     static private let appKey = "508f411c9deb88d2138fe738dff1686c"
     
     
-    static func getRecipeList(of selectedIngredients: [String], completion: @escaping ([Recipe]) -> Void) {
+    
+    
+    static func getRecipeList(of selectedIngredients: [String], with filter: Filter, completion: @escaping ([Recipe]) -> Void) {
         
-        guard let url = getUrl(queries: selectedIngredients) else {return}
+        guard var urlComponent = getUrlComponent(queries: selectedIngredients) else {return}
+        
+        if filter.balanced {
+            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.FilterNames.balanced.rawValue))
+        }
+        if filter.highProtein {
+            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.FilterNames.highProtein.rawValue))
+        }
+        if filter.vegan {
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.vegan.rawValue))
+        }
+        if filter.sugarConscious {
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.sugarConscios.rawValue))
+        }
+        if filter.peanutFree {
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.peanutFree.rawValue))
+        }
+        if filter.treenutFree {
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.treeNutFree.rawValue))
+        }
+                
+        guard let url = urlComponent.url else {return}
         
         let session = URLSession(configuration: .default)
         
@@ -36,22 +59,21 @@ class Client {
         
     }
     
-    static func getUrl(queries items: [String]) -> URL? {
+    static func getUrlComponent(queries items: [String]) -> URLComponents? {
+        
         guard var urlComponents = URLComponents(string: baseUrl) else {return nil}
         
         urlComponents.queryItems = [
             URLQueryItem(name: "app_id", value: appId),
             URLQueryItem(name: "app_key", value: appKey),
             URLQueryItem(name: "from", value: "0"),
-            URLQueryItem(name: "to", value: "5"),
+            URLQueryItem(name: "to", value: "15"),
         ]
         let queryItems = items.joined(separator: "+")
         
         urlComponents.queryItems?.append(URLQueryItem(name: "q", value: queryItems))
-        
-        guard let url = urlComponents.url else {return nil}
-        
-        return url
+                
+        return urlComponents
     }
     
     static func getImage(url: String, completion: @escaping (UIImage) -> Void) {

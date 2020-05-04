@@ -12,20 +12,10 @@ class UserPreference: ObservableObject {
     
     @Published var selectedIngredients = [String]()
     
-    @Published var dietFilter: DietFilter
+    @Published var filter: Filter
     
-    init(dietFilter: DietFilter) {
-        self.dietFilter = dietFilter
+    init(filter: Filter) {
+        self.filter = filter
     }
     
-}
-
-
-struct DietFilter {
-    var balanced: Bool
-    var vegan: Bool
-    var highProtein: Bool
-    var sugarConscious: Bool
-    var peanutFree: Bool
-    var treenutFree: Bool
 }

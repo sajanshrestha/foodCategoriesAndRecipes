@@ -15,10 +15,10 @@ struct ListView: View {
     
     @State private var showAlert = false
        
-    @Environment(\.managedObjectContext) var context
-    
     @EnvironmentObject var userPreference: UserPreference
     
+    @Environment(\.managedObjectContext) var context
+
     @FetchRequest(
         entity: Item.entity(),
         sortDescriptors: [
@@ -48,8 +48,7 @@ struct ListView: View {
             .onAppear {
                 let itemNames = self.items.map { $0.name ?? ""}
                 
-                IngredientManager.manageSelectedIngredients(from: itemNames)
-                self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
+                self.setSelectedIngredietsOnUserDefaults(from: itemNames)
 
             }
             .alert(isPresented: $showAlert, content: {
@@ -95,7 +94,14 @@ extension ListView {
             print("error saving item!")
         }
         let itemNames = items.map {$0.name ?? ""}
-        IngredientManager.manageSelectedIngredients(from: itemNames)
+        
+        setSelectedIngredietsOnUserDefaults(from: itemNames)
+
+    }
+    
+    func setSelectedIngredietsOnUserDefaults(from itemNames: [String]) {
+        IngredientManager.addSelectedIngredientsToUserDefaults(from: itemNames)
+        self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
     }
   
 }

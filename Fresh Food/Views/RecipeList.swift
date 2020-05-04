@@ -40,9 +40,7 @@ struct RecipeList: View {
                 }))
             }.padding()
                 .onAppear {
-                    print("recipe list")
-                    self.setRecipeTitle()
-                    //self.fetchRecipeList()
+                    // self.fetchRecipeList()
             }
         }
     }
@@ -54,22 +52,13 @@ extension RecipeList {
     
     func fetchRecipeList() {
         
-        guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
-        
         self.recipes.removeAll()
         
-        Client.getRecipeList(of: selectedIngredients) { (receivedRecipes) in
+        Client.getRecipeList(of: userPreference.selectedIngredients, with: userPreference.filter) { (receivedRecipes) in
             self.recipes.append(contentsOf: receivedRecipes)
         }
     }
     
-    // takes selected ingredients as input and sets the title concatenating the output
-    
-    func setRecipeTitle() {
-        
-        guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
-        userPreference.selectedIngredients = selectedIngredients
-    }
 }
 
 struct RecipeList_Previews: PreviewProvider {

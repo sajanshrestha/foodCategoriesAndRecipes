@@ -22,7 +22,7 @@ struct IngredientManager {
     }
     
     // takes input of item names and set the selected items of the user defaults accordingly
-    static func manageSelectedIngredients(from itemNames: [String]) {
+    static func addSelectedIngredientsToUserDefaults(from itemNames: [String]) {
         
         // if the selected item names in user defaults is nil, select two random names from the list
         if selectedIngredients == nil {

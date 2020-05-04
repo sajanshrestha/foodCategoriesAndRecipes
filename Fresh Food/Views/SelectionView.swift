@@ -7,72 +7,84 @@
 //
 
 
- import SwiftUI
+import SwiftUI
 
- struct SelectionView: View {
-    
-    @State private var selectedIngredientOne = 0
-    @State private var selectedIngredientTwo = 0
-
+struct SelectionView: View {
+        
     var itemNames: [String]
     
     @EnvironmentObject var userPreference: UserPreference
-            
-     var body: some View {
-         
-         Form {
+    
+    var body: some View {
+        
+        Form {
             Section(header: Text("Select Your Ingredients"), content: {
-                Picker(selection: $selectedIngredientOne, label: Text("Ingredient 1"), content: {
-                    ForEach(0..<itemNames.count, id: \.self) { index in
-                        Text(self.itemNames[index])
+                
+                
+                Picker(selection: $userPreference.selectedIngredients[0], label: Text("Ingredient 1"), content: {
+                    ForEach(itemNames, id: \.self) { name in
+                        Text(name)
                     }
                 })
-                Picker(selection: $selectedIngredientTwo, label: Text("Ingredient 2"), content: {
-                    ForEach(0..<itemNames.count, id: \.self) { index in
-                        Text(self.itemNames[index])
+                
+                Picker(selection: $userPreference.selectedIngredients[1], label: Text("Ingredient 2"), content: {
+                    ForEach(itemNames, id: \.self) { name in
+                        Text(name)
                     }
                 })
+                
             })
             
             Section(header: Text("Health and Allergen Filters"), content: {
-                Toggle(isOn: $userPreference.dietFilter.balanced, label: {
+                Toggle(isOn: $userPreference.filter.balanced, label: {
                     Text("Balanced")
                 })
                 
-                Toggle(isOn: $userPreference.dietFilter.vegan, label: {
+                Toggle(isOn: $userPreference.filter.vegan, label: {
                     Text("Vegan")
                 })
-                Toggle(isOn: $userPreference.dietFilter.highProtein, label: {
+                Toggle(isOn: $userPreference.filter.highProtein, label: {
                     Text("High Protein")
                 })
                 
-                Toggle(isOn: $userPreference.dietFilter.sugarConscious, label: {
+                Toggle(isOn: $userPreference.filter.sugarConscious, label: {
                     Text("Sugar Conscious")
                 })
-                Toggle(isOn: $userPreference.dietFilter.peanutFree, label: {
+                Toggle(isOn: $userPreference.filter.peanutFree, label: {
                     Text("Peanut Free")
                 })
                 
-                Toggle(isOn: $userPreference.dietFilter.treenutFree, label: {
+                Toggle(isOn: $userPreference.filter.treenutFree, label: {
                     Text("Treenut Free")
                 })
             })
             
-            Button("Apply") {
-                IngredientManager.setUserPickedIngredients([self.itemNames[self.selectedIngredientOne], self.itemNames[self.selectedIngredientTwo]])
-                let filter = self.userPreference.dietFilter
-                FilterManager.setFilters(filter)
-                
-            }
-         }
-     }
- }
+            
+        }
+        .onDisappear {
+            self.setIngredients()
+            self.setFilters()
+        }
+    }
+}
 
- struct SelectionView_Previews: PreviewProvider {
-     static var previews: some View {
-         SelectionView(itemNames: [])
-     }
- }
+struct SelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        SelectionView(itemNames: [])
+    }
+}
 
- 
+
+extension SelectionView {
+    
+    func setIngredients() {
+        IngredientManager.setUserPickedIngredients([userPreference.selectedIngredients[0], userPreference.selectedIngredients[1]])
+    }
+    
+    func setFilters() {
+        let filter = self.userPreference.filter
+        FilterManager.setFilters(filter)
+    }
+}
+
 
