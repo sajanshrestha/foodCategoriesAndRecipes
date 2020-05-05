@@ -1,14 +1,14 @@
 //
-//  ItemInfoRow.swift
-//  GTracker
+//  EditableInfoRow.swift
+//  Fresh Food
 //
-//  Created by Sajan Shrestha on 1/20/20.
+//  Created by Sajan Shrestha on 5/5/20.
 //  Copyright © 2020 Sajan Shrestha. All rights reserved.
 //
 
 import SwiftUI
 
-struct ItemInfoRow: View {
+struct EditableInfoRow: View {
     
     var infoTitle: String
     @Binding var infoValue: String
@@ -20,13 +20,12 @@ struct ItemInfoRow: View {
                 .foregroundColor(.green)
             TextField("", text: $infoValue)
             .textFieldStyle(RoundedBorderTextFieldStyle())
-                .disabled(true)
         }
     }
 }
 
-struct ItemInfoRow_Previews: PreviewProvider {
+struct EditableInfoRow_Previews: PreviewProvider {
     static var previews: some View {
-        ItemInfoRow(infoTitle: "Item", infoValue: .constant("Banana"))
+        EditableInfoRow(infoTitle: "Item", infoValue: .constant("Banana"))
     }
 }

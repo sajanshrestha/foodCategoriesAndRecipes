@@ -12,13 +12,52 @@ struct DetailView: View {
     
     var item: Item
     
+    @State private var name = ""
+    @State private var quantity = ""
+    @State private var date = ""
+    
+    @Environment(\.managedObjectContext) var context
+
+    
     var body: some View {
         VStack {
-            ItemInfoRow(infoTitle: "Item", infoValue: item.name ?? "")
-            ItemInfoRow(infoTitle: "Quantity", infoValue: "\(item.quantity)")
-            ItemInfoRow(infoTitle: "Date", infoValue: item.purchasedDate!.getMediumFormat())
+            EditableInfoRow(infoTitle: "Name", infoValue: $name)
+            EditableInfoRow(infoTitle: "Quantity", infoValue: $quantity)
+            ItemInfoRow(infoTitle: "Purchased At", infoValue: $date)
+        }
+        .onAppear {
+            self.name = self.item.name ?? ""
+            self.quantity = "\(Int(self.item.quantity))"
+            self.date = "\(self.item.purchasedDate?.getMediumFormat() ?? "")"
+        }
+        .onDisappear {
+            self.updateItem()
         }
         .padding(.horizontal)
+
+    }
+}
+
+
+
+
+extension DetailView {
+    
+    func updateItem() {
+        
+        let updatedItem = Item(context: self.context)
+        updatedItem.name = self.name
+        updatedItem.quantity = Int16(self.quantity) ?? Int16(0)
+        updatedItem.purchasedDate = self.item.purchasedDate
+        
+        self.context.delete(self.item)
+        
+        do {
+            try self.context.save()
+        }
+        catch {
+            print("error updating")
+        }
     }
 }
 

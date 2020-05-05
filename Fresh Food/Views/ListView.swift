@@ -23,7 +23,7 @@ struct ListView: View {
         entity: Item.entity(),
         sortDescriptors: [
             NSSortDescriptor(keyPath: \Item.name,
-                             ascending: true)]) var items: FetchedResults<Item>
+                             ascending: true)], predicate: NSPredicate(format: "quantity > %a", 0)) var items: FetchedResults<Item>
     
     var body: some View {
         

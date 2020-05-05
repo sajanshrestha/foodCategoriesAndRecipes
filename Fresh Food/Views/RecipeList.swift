@@ -15,7 +15,7 @@ struct RecipeList: View {
     
     @EnvironmentObject var userPreference: UserPreference
     
-    @FetchRequest(entity: Item.entity(), sortDescriptors: []) var items: FetchedResults<Item>
+    @FetchRequest(entity: Item.entity(), sortDescriptors: [], predicate: NSPredicate(format: "quantity > %a", 0)) var items: FetchedResults<Item>
     
     
     var body: some View {
