@@ -16,6 +16,7 @@ class UserPreference: ObservableObject {
     
     init(filter: Filter) {
         self.filter = filter
+        
     }
     
 }

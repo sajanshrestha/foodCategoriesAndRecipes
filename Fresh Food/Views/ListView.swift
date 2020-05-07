@@ -13,7 +13,7 @@ struct ListView: View {
     @State private var name = ""
     @State private var quantity = ""
     
-    @State private var showAlert = false
+    @State private var fieldEmptyAlert = false
        
     @EnvironmentObject var userPreference: UserPreference
     
@@ -40,6 +40,7 @@ struct ListView: View {
                         })
                     }.onDelete(perform: delete)
                 }
+                .animation(.spring())
             }
             .navigationBarTitle("Grocery List", displayMode: .inline)
             .navigationBarItems(trailing: Image(systemName: "plus").onTapGesture {
@@ -51,7 +52,7 @@ struct ListView: View {
                 self.setSelectedIngredietsOnUserDefaults(from: itemNames)
 
             }
-            .alert(isPresented: $showAlert, content: {
+            .alert(isPresented: $fieldEmptyAlert, content: {
                 Alert(title: Text("Fields Empty"), message: Text("Please Enter Both Name And Quantity"), dismissButton: .default(Text("Ok")))
             })
         }
@@ -63,7 +64,7 @@ extension ListView {
     func addItem() {
         
         guard !name.isEmpty && !quantity.isEmpty else {
-            self.showAlert = true
+            self.fieldEmptyAlert = true
             return
         }
         

@@ -1,14 +1,14 @@
 //
-//  ClientTests.swift
+//  IngredientManagerTests.swift
 //  Fresh FoodTests
 //
-//  Created by Sajan Shrestha on 4/28/20.
+//  Created by Sajan Shrestha on 5/6/20.
 //  Copyright © 2020 Sajan Shrestha. All rights reserved.
 //
 
 import XCTest
 
-class ClientTests: XCTestCase {
+class IngredientManagerTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
