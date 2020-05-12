@@ -26,9 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return                   
         }
         
-        let filter = FilterManager.getFilters()
-        let userPreference = UserPreference(filter: filter)
-        
+        let userPreference = UserPreference()
         
         let contentView = HomeView().environment(\.managedObjectContext, context).environmentObject(userPreference)
         

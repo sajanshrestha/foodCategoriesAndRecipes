@@ -12,11 +12,13 @@ class UserPreference: ObservableObject {
     
     @Published var selectedIngredients = [String]()
     
-    @Published var filter: Filter
+    var filter: Filter
     
-    init(filter: Filter) {
-        self.filter = filter
+    init() {
         
+        self.filter = FilterManager.getFilters()
+        
+        guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
+        self.selectedIngredients = selectedIngredients
     }
-    
 }

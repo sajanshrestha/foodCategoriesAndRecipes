@@ -9,11 +9,5 @@
 import Foundation
 
 struct Filter {
-    var balanced: Bool
-    var vegan: Bool
-    var highProtein: Bool
-    var sugarConscious: Bool
-    var peanutFree: Bool
-    var treenutFree: Bool
-    
+    var balanced, vegan, highProtein, sugarConscious, peanutFree, treenutFree : Bool
 }

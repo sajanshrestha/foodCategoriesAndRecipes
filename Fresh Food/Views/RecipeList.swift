@@ -40,6 +40,9 @@ struct RecipeList: View {
                 }))
             }.padding()
                 .onAppear {
+                    
+                    self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
+                    
                     // self.fetchRecipeList()
             }
         }

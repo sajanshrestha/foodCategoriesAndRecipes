@@ -52,6 +52,11 @@ extension DetailView {
         
         self.context.delete(self.item)
         
+        save()
+        
+    }
+    
+    func save() {
         do {
             try self.context.save()
         }

@@ -36,7 +36,6 @@
 		A1F24E92244CB875007AF4FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1F24E90244CB875007AF4FF /* LaunchScreen.storyboard */; };
 		A1F24E9D244CB876007AF4FF /* Fresh_FoodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F24E9C244CB876007AF4FF /* Fresh_FoodTests.swift */; };
 		A1F24EA8244CB876007AF4FF /* Fresh_FoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F24EA7244CB876007AF4FF /* Fresh_FoodUITests.swift */; };
-		A1F71B97245B2E6900153EC1 /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F71B96245B2E6900153EC1 /* DemoView.swift */; };
 		A1F71B99245B350500153EC1 /* Comic Sans MS Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */; };
 		A1F71B9B245B529800153EC1 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F71B9A245B529800153EC1 /* SelectionView.swift */; };
 /* End PBXBuildFile section */
@@ -94,7 +93,6 @@
 		A1F24EA3244CB876007AF4FF /* Fresh FoodUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fresh FoodUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1F24EA7244CB876007AF4FF /* Fresh_FoodUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fresh_FoodUITests.swift; sourceTree = "<group>"; };
 		A1F24EA9244CB876007AF4FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A1F71B96245B2E6900153EC1 /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS Bold.ttf"; sourceTree = "<group>"; };
 		A1F71B9A245B529800153EC1 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,9 +131,17 @@
 				A10E221A244F8C3400F3AF52 /* RecipeList.swift */,
 				A1F71B9A245B529800153EC1 /* SelectionView.swift */,
 				A1D227022450D77F00566A1C /* RecipeWebView.swift */,
-				A1F71B96245B2E6900153EC1 /* DemoView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A1776DE624645A210005D632 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */,
+				A1330A09245B7EB200538F1B /* Comic Sans MS.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		A1B8CEEA244E5D0B00BC445A /* Components */ = {
@@ -175,22 +181,19 @@
 		A1F24E84244CB873007AF4FF /* Fresh Food */ = {
 			isa = PBXGroup;
 			children = (
-				A12BB707245144F0009C3746 /* Views */,
+				A10E2218244F8B1F00F3AF52 /* Client.swift */,
+				A1BD53862459CA3B0046EECD /* IngredientManager.swift */,
+				A13FBFC5245E2DA700496633 /* FilterManager.swift */,
 				A1B8CEEA244E5D0B00BC445A /* Components */,
+				A12BB707245144F0009C3746 /* Views */,
 				A1F24EB6244CD204007AF4FF /* Models */,
+				A1776DE624645A210005D632 /* Fonts */,
 				A1F24EB5244CB95D007AF4FF /* Supporting Files */,
 				A1F24E8B244CB875007AF4FF /* Assets.xcassets */,
 				A1F24E93244CB875007AF4FF /* Info.plist */,
 				A1F24E8D244CB875007AF4FF /* Preview Content */,
-				A10E2218244F8B1F00F3AF52 /* Client.swift */,
-				A1BD53862459CA3B0046EECD /* IngredientManager.swift */,
 				A112D3E124522F73008A7740 /* BuiltInExtensions.swift */,
 				A146A3DD24578AA1005F0916 /* FreshFood.xcdatamodeld */,
-				A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */,
-				A1330A09245B7EB200538F1B /* Comic Sans MS.ttf */,
-				A13FBFC5245E2DA700496633 /* FilterManager.swift */,
-				A13FBFC1245DD89900496633 /* UserPreference.swift */,
-				A177AA56245E42F90056E174 /* Filter.swift */,
 			);
 			path = "Fresh Food";
 			sourceTree = "<group>";
@@ -235,7 +238,9 @@
 		A1F24EB6244CD204007AF4FF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A13FBFC1245DD89900496633 /* UserPreference.swift */,
 				A1D227042450E01400566A1C /* Recipe.swift */,
+				A177AA56245E42F90056E174 /* Filter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -374,7 +379,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B8CEEC244E5D1B00BC445A /* AddItemView.swift in Sources */,
-				A1F71B97245B2E6900153EC1 /* DemoView.swift in Sources */,
 				A10E2219244F8B1F00F3AF52 /* Client.swift in Sources */,
 				A1B8CEE8244E5B1800BC445A /* DetailView.swift in Sources */,
 				A10E2215244F766800F3AF52 /* ItemInfoRow.swift in Sources */,

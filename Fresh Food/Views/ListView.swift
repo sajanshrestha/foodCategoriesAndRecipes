@@ -14,10 +14,10 @@ struct ListView: View {
     @State private var quantity = ""
     
     @State private var fieldEmptyAlert = false
-       
-    @EnvironmentObject var userPreference: UserPreference
-    
+           
     @Environment(\.managedObjectContext) var context
+    
+    @EnvironmentObject var userPreference: UserPreference
 
     @FetchRequest(
         entity: Item.entity(),
@@ -40,17 +40,13 @@ struct ListView: View {
                         })
                     }.onDelete(perform: delete)
                 }
-                .animation(.spring())
             }
             .navigationBarTitle("Grocery List", displayMode: .inline)
             .navigationBarItems(trailing: Image(systemName: "plus").onTapGesture {
                 self.addItem()
             })
             .onAppear {
-                let itemNames = self.items.map { $0.name ?? ""}
-                
-                self.setSelectedIngredietsOnUserDefaults(from: itemNames)
-
+                self.updateSelectedIngredients()
             }
             .alert(isPresented: $fieldEmptyAlert, content: {
                 Alert(title: Text("Fields Empty"), message: Text("Please Enter Both Name And Quantity"), dismissButton: .default(Text("Ok")))
@@ -93,16 +89,14 @@ extension ListView {
         }
         catch {
             print("error saving item!")
-        }
-        let itemNames = items.map {$0.name ?? ""}
-        
-        setSelectedIngredietsOnUserDefaults(from: itemNames)
+        }        
+        updateSelectedIngredients()
 
     }
     
-    func setSelectedIngredietsOnUserDefaults(from itemNames: [String]) {
+    func updateSelectedIngredients() {
+        let itemNames = self.items.map { $0.name ?? ""}
         IngredientManager.addSelectedIngredientsToUserDefaults(from: itemNames)
-        self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
     }
   
 }
