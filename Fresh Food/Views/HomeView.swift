@@ -16,6 +16,12 @@ struct HomeView: View {
                     Image(systemName: "list.bullet")
                     Text("List")
                 })
+            
+            GraphView()
+                .tabItem({
+                    Image(systemName: "text.alignleft")
+                    Text("Food Graph")
+                })
             RecipeList()
                 .tabItem({
                     Image(systemName: "r.circle")

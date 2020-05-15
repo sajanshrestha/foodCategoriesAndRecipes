@@ -16,7 +16,7 @@ struct SelectionView: View {
     @EnvironmentObject var userPreference: UserPreference
     
     @State private var success = false
-    
+        
     var body: some View {
         ZStack {
             
@@ -67,14 +67,13 @@ struct SelectionView: View {
                     self.setIngredients()
                     self.success = true
                     
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        self.success = false
+                    }
                 }
             }
             
-            
             SuccessIcon(success: $success)
-                .frame(width: 200, height: 200)
-                .animation(Animation.spring())
-            
         }
     }
 }

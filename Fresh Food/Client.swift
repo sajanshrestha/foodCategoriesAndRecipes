@@ -16,12 +16,10 @@ class Client {
     static private let appId = "f85a3762"
     static private let appKey = "508f411c9deb88d2138fe738dff1686c"
     
-    
-    
-    
     static func getRecipeList(of selectedIngredients: [String], with filter: Filter, completion: @escaping ([Recipe]) -> Void) {
         
         guard var urlComponent = getUrlComponent(queries: selectedIngredients) else {return}
+        
         
         if filter.balanced {
             urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.FilterNames.balanced.rawValue))

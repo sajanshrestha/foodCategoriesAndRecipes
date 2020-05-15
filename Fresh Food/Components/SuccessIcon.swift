@@ -13,18 +13,17 @@ struct SuccessIcon: View {
     @Binding var success: Bool
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                if self.success {
-                    Image(systemName: "checkmark.circle.fill")
-                        .resizable()
-                        .frame(width: geometry.size.width / 4, height: geometry.size.width / 4)
-                        .foregroundColor(.green)
-                        .background(Circle().stroke(lineWidth: 6))
-                        .shadow(radius: 2)
-                        
-                }
-            }
+        
+        ZStack {
+            
+            Image(systemName: "checkmark.circle.fill")
+                .font(.largeTitle)
+                .foregroundColor(Color.green)
+                .opacity(success ? 1 : 0)
+                .rotationEffect(.degrees(success ? 360 : 0))
+                .scaleEffect(success ? 2 : 1)
+                .animation(Animation.easeInOut)
+            
         }
             
     }

@@ -17,8 +17,6 @@ struct ListView: View {
            
     @Environment(\.managedObjectContext) var context
     
-    @EnvironmentObject var userPreference: UserPreference
-
     @FetchRequest(
         entity: Item.entity(),
         sortDescriptors: [
@@ -69,7 +67,8 @@ extension ListView {
         item.name = self.name
         item.quantity = Int16(self.quantity) ?? 0
         item.purchasedDate = Date()
-        
+        item.category = CategoryModel.categorize(item: item) ?? ""
+    
         saveItem()
 
     }

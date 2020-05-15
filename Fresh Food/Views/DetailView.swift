@@ -15,6 +15,7 @@ struct DetailView: View {
     @State private var name = ""
     @State private var quantity = ""
     @State private var date = ""
+    @State private var category = ""
     
     @Environment(\.managedObjectContext) var context
 
@@ -23,12 +24,15 @@ struct DetailView: View {
         VStack {
             EditableInfoRow(infoTitle: "Name", infoValue: $name)
             EditableInfoRow(infoTitle: "Quantity", infoValue: $quantity)
+            ItemInfoRow(infoTitle: "Category", infoValue: $category)
             ItemInfoRow(infoTitle: "Purchased At", infoValue: $date)
+            
         }
         .onAppear {
             self.name = self.item.name ?? ""
             self.quantity = "\(Int(self.item.quantity))"
             self.date = "\(self.item.purchasedDate?.getMediumFormat() ?? "")"
+            self.category = self.item.category ?? ""
         }
         .onDisappear {
             self.updateItem()
@@ -49,6 +53,7 @@ extension DetailView {
         updatedItem.name = self.name
         updatedItem.quantity = Int16(self.quantity) ?? Int16(0)
         updatedItem.purchasedDate = self.item.purchasedDate
+        updatedItem.category = self.item.category
         
         self.context.delete(self.item)
         
