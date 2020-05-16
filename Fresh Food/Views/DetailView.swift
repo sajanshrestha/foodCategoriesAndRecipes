@@ -25,7 +25,7 @@ struct DetailView: View {
             EditableInfoRow(infoTitle: "Name", infoValue: $name)
             EditableInfoRow(infoTitle: "Quantity", infoValue: $quantity)
             ItemInfoRow(infoTitle: "Category", infoValue: $category)
-            ItemInfoRow(infoTitle: "Purchased At", infoValue: $date)
+            ItemInfoRow(infoTitle: "Purchased Date", infoValue: $date)
             
         }
         .onAppear {

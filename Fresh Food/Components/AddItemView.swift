@@ -14,12 +14,16 @@ struct AddItemView: View {
     @Binding var quantity: String
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading, spacing: 2) {
             TextField("Grocery Item", text: $name)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)
                 .padding(.top)
             
+            if name.count > 0 {
+                RecommendationView(enteredCharacters: $name)
+                    .padding(.horizontal)
+            }
             TextField("Quantity", text: $quantity)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding(.horizontal)

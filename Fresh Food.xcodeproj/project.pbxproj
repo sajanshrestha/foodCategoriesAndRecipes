@@ -41,6 +41,7 @@
 		A1F24EA8244CB876007AF4FF /* Fresh_FoodUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F24EA7244CB876007AF4FF /* Fresh_FoodUITests.swift */; };
 		A1F71B99245B350500153EC1 /* Comic Sans MS Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */; };
 		A1F71B9B245B529800153EC1 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F71B9A245B529800153EC1 /* SelectionView.swift */; };
+		A1FEE233246F8725001CDF0B /* RecommendationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FEE232246F8725001CDF0B /* RecommendationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		A1F24EA9244CB876007AF4FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F71B98245B350500153EC1 /* Comic Sans MS Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS Bold.ttf"; sourceTree = "<group>"; };
 		A1F71B9A245B529800153EC1 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		A1FEE232246F8725001CDF0B /* RecommendationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				A19B18492457CBFA009C59A1 /* ItemRow.swift */,
 				A1D227002450D4F300566A1C /* WebView.swift */,
 				A177AA58245E572C0056E174 /* SuccessIcon.swift */,
+				A1FEE232246F8725001CDF0B /* RecommendationView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -404,6 +407,7 @@
 				A10E2217244F77DF00F3AF52 /* HomeView.swift in Sources */,
 				A177AA57245E42F90056E174 /* Filter.swift in Sources */,
 				A1BD53872459CA3B0046EECD /* IngredientManager.swift in Sources */,
+				A1FEE233246F8725001CDF0B /* RecommendationView.swift in Sources */,
 				A13FBFC2245DD89900496633 /* UserPreference.swift in Sources */,
 				A1F24E86244CB873007AF4FF /* AppDelegate.swift in Sources */,
 				A11C8845246F5306004FDF2A /* GraphView.swift in Sources */,

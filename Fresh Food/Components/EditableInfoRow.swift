@@ -20,6 +20,8 @@ struct EditableInfoRow: View {
                 .foregroundColor(.green)
             TextField("", text: $infoValue)
             .textFieldStyle(RoundedBorderTextFieldStyle())
+            .font(Font.custom("Comic Sans MS", size: 20))
+            .offset(y: -8)
         }
     }
 }

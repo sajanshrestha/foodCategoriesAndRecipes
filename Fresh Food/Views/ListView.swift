@@ -70,7 +70,12 @@ extension ListView {
         item.category = CategoryModel.categorize(item: item) ?? ""
     
         saveItem()
-
+        
+        let itemName = ItemName(context: self.context)
+        itemName.name = self.name
+        
+        saveItem()
+    
     }
     
     func delete(at offsets: IndexSet) {

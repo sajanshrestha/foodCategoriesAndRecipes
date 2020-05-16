@@ -19,8 +19,11 @@ struct ItemInfoRow: View {
                 .bold()
                 .foregroundColor(.green)
             TextField("", text: $infoValue)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .font(Font.custom("Comic Sans MS", size: 20))
+                .offset(y: -8)
                 .disabled(true)
+            
         }
     }
 }
