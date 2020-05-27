@@ -16,7 +16,7 @@ struct CategoryModel {
         
         let model = CategoryClassifier()
         do {
-            let description = try model.prediction(Description: name)
+            let description = try model.prediction(Description: name.capitalized)
             return description.Group
             
         }

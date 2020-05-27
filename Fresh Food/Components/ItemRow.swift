@@ -21,7 +21,7 @@ struct ItemRow: View {
             Text("\(item.quantity)")
                 .font(.subheadline)
                 .bold()
-                .foregroundColor(item.quantity <= 3 ? .red : .green)
+                .foregroundColor(.green)
         }
         
     }

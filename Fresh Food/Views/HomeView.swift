@@ -17,7 +17,7 @@ struct HomeView: View {
                     Text("List")
                 })
             
-            GraphView()
+            FoodDistributionView()
                 .tabItem({
                     Image(systemName: "text.alignleft")
                     Text("Food Graph")

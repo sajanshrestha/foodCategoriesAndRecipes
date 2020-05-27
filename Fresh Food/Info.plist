@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Calligraffitti-Regular.ttf</string>
 		<string>Comic Sans MS.ttf</string>
 		<string>Comic Sans MS Bold.ttf</string>
 	</array>

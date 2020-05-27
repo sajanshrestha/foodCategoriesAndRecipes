@@ -12,7 +12,7 @@ class UserPreference: ObservableObject {
     
     @Published var selectedIngredients = [String]()
     
-    var filter: Filter
+    @Published var filter: Filter
     
     init() {
         
