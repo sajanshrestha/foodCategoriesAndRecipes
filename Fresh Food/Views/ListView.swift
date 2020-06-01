@@ -62,20 +62,22 @@ extension ListView {
             return
         }
         
+        createItem()
+        
+        saveItem()
+          
+    }
+    
+    func createItem() {
         let item = Item(context: self.context)
         item.id = UUID()
         item.name = self.name
         item.quantity = Int16(self.quantity) ?? 0
         item.purchasedDate = Date()
         item.category = CategoryModel.categorize(item: item) ?? ""
-    
-        saveItem()
         
         let itemName = ItemName(context: self.context)
         itemName.name = self.name
-        
-        saveItem()
-    
     }
     
     func delete(at offsets: IndexSet) {

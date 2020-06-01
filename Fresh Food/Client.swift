@@ -22,22 +22,22 @@ class Client {
         
         
         if filter.balanced {
-            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.FilterNames.balanced.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.DietFilter.balanced.rawValue))
         }
         if filter.highProtein {
-            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.FilterNames.highProtein.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "diet", value: FilterManager.DietFilter.highProtein.rawValue))
         }
         if filter.vegan {
-            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.vegan.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.DietFilter.vegan.rawValue))
         }
         if filter.sugarConscious {
-            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.sugarConscios.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.DietFilter.sugarConscios.rawValue))
         }
         if filter.peanutFree {
-            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.peanutFree.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.DietFilter.peanutFree.rawValue))
         }
         if filter.treenutFree {
-            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.FilterNames.treeNutFree.rawValue))
+            urlComponent.queryItems?.append(URLQueryItem(name: "health", value: FilterManager.DietFilter.treeNutFree.rawValue))
         }
                 
         guard let url = urlComponent.url else {return}

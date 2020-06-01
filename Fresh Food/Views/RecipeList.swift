@@ -13,7 +13,7 @@ struct RecipeList: View {
     
     @State private var recipes = [Recipe]()
     
-    @EnvironmentObject var userPreference: UserPreference
+    @EnvironmentObject var dietPreference: DietPreference
     
     @FetchRequest(entity: Item.entity(), sortDescriptors: [], predicate: NSPredicate(format: "quantity > %a", 0)) var items: FetchedResults<Item>
     
@@ -25,7 +25,7 @@ struct RecipeList: View {
         return NavigationView {
             VStack {
                 HStack {
-                    Text("\(userPreference.selectedIngredients.joined(separator: " and ")) Recipes").bold().padding().font(Font.custom("Comic Sans MS Bold", size: 20))
+                    Text("\(dietPreference.selectedIngredients.joined(separator: " and ")) Recipes").bold().padding().font(Font.custom("Comic Sans MS Bold", size: 20))
                     Spacer()
                 }
                 
@@ -41,7 +41,7 @@ struct RecipeList: View {
             }.padding()
                 .onAppear {
                     
-                    self.userPreference.selectedIngredients = IngredientManager.selectedIngredients!
+                    self.dietPreference.selectedIngredients = IngredientManager.selectedIngredients!
                     
                     // self.fetchRecipeList()
             }
@@ -57,7 +57,7 @@ extension RecipeList {
         
         self.recipes.removeAll()
         
-        Client.getRecipeList(of: userPreference.selectedIngredients, with: userPreference.filter) { (receivedRecipes) in
+        Client.getRecipeList(of: dietPreference.selectedIngredients, with: dietPreference.filter) { (receivedRecipes) in
             self.recipes.append(contentsOf: receivedRecipes)
         }
     }

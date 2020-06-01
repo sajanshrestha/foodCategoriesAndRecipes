@@ -12,13 +12,12 @@
 		A10E2219244F8B1F00F3AF52 /* Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E2218244F8B1F00F3AF52 /* Client.swift */; };
 		A10E221B244F8C3400F3AF52 /* RecipeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E221A244F8C3400F3AF52 /* RecipeList.swift */; };
 		A10E221D244F8CCC00F3AF52 /* RecipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E221C244F8CCC00F3AF52 /* RecipeRow.swift */; };
-		A10F5E462470C4E700DC75FC /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10F5E452470C4E700DC75FC /* DemoView.swift */; };
 		A112D3E224522F73008A7740 /* BuiltInExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A112D3E124522F73008A7740 /* BuiltInExtensions.swift */; };
 		A11C8841246F3F0B004FDF2A /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C8840246F3F0B004FDF2A /* CategoryModel.swift */; };
 		A11C8845246F5306004FDF2A /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C8844246F5306004FDF2A /* GraphView.swift */; };
 		A11F4DBD2463236D00566CDE /* IngredientManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11F4DBC2463236D00566CDE /* IngredientManagerTests.swift */; };
 		A1330A0A245B7EB200538F1B /* Comic Sans MS.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A1330A09245B7EB200538F1B /* Comic Sans MS.ttf */; };
-		A13FBFC2245DD89900496633 /* UserPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FBFC1245DD89900496633 /* UserPreference.swift */; };
+		A13FBFC2245DD89900496633 /* DietPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FBFC1245DD89900496633 /* DietPreference.swift */; };
 		A13FBFC6245E2DA700496633 /* FilterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13FBFC5245E2DA700496633 /* FilterManager.swift */; };
 		A146A3DF24578AA1005F0916 /* FreshFood.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A146A3DD24578AA1005F0916 /* FreshFood.xcdatamodeld */; };
 		A14AC220247C63CA00276B05 /* CategoryClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = A14AC21F247C63C900276B05 /* CategoryClassifier.mlmodel */; };
@@ -70,13 +69,12 @@
 		A10E2218244F8B1F00F3AF52 /* Client.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Client.swift; sourceTree = "<group>"; };
 		A10E221A244F8C3400F3AF52 /* RecipeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeList.swift; sourceTree = "<group>"; };
 		A10E221C244F8CCC00F3AF52 /* RecipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeRow.swift; sourceTree = "<group>"; };
-		A10F5E452470C4E700DC75FC /* DemoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
 		A112D3E124522F73008A7740 /* BuiltInExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuiltInExtensions.swift; sourceTree = "<group>"; };
 		A11C8840246F3F0B004FDF2A /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		A11C8844246F5306004FDF2A /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		A11F4DBC2463236D00566CDE /* IngredientManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientManagerTests.swift; sourceTree = "<group>"; };
 		A1330A09245B7EB200538F1B /* Comic Sans MS.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Comic Sans MS.ttf"; sourceTree = "<group>"; };
-		A13FBFC1245DD89900496633 /* UserPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreference.swift; sourceTree = "<group>"; };
+		A13FBFC1245DD89900496633 /* DietPreference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietPreference.swift; sourceTree = "<group>"; };
 		A13FBFC5245E2DA700496633 /* FilterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterManager.swift; sourceTree = "<group>"; };
 		A146A3DE24578AA1005F0916 /* FreshFood.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FreshFood.xcdatamodel; sourceTree = "<group>"; };
 		A14AC21F247C63C900276B05 /* CategoryClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = CategoryClassifier.mlmodel; sourceTree = "<group>"; };
@@ -173,7 +171,6 @@
 				A1D227002450D4F300566A1C /* WebView.swift */,
 				A177AA58245E572C0056E174 /* SuccessIcon.swift */,
 				A1FEE232246F8725001CDF0B /* RecommendationView.swift */,
-				A10F5E452470C4E700DC75FC /* DemoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -259,7 +256,7 @@
 		A1F24EB6244CD204007AF4FF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				A13FBFC1245DD89900496633 /* UserPreference.swift */,
+				A13FBFC1245DD89900496633 /* DietPreference.swift */,
 				A1D227042450E01400566A1C /* Recipe.swift */,
 				A177AA56245E42F90056E174 /* Filter.swift */,
 				A11C8840246F3F0B004FDF2A /* CategoryModel.swift */,
@@ -415,13 +412,12 @@
 				A177AA59245E572C0056E174 /* SuccessIcon.swift in Sources */,
 				A11C8841246F3F0B004FDF2A /* CategoryModel.swift in Sources */,
 				A10E221B244F8C3400F3AF52 /* RecipeList.swift in Sources */,
-				A10F5E462470C4E700DC75FC /* DemoView.swift in Sources */,
 				A146A3DF24578AA1005F0916 /* FreshFood.xcdatamodeld in Sources */,
 				A10E2217244F77DF00F3AF52 /* HomeView.swift in Sources */,
 				A177AA57245E42F90056E174 /* Filter.swift in Sources */,
 				A1BD53872459CA3B0046EECD /* IngredientManager.swift in Sources */,
 				A1FEE233246F8725001CDF0B /* RecommendationView.swift in Sources */,
-				A13FBFC2245DD89900496633 /* UserPreference.swift in Sources */,
+				A13FBFC2245DD89900496633 /* DietPreference.swift in Sources */,
 				A1F24E86244CB873007AF4FF /* AppDelegate.swift in Sources */,
 				A11C8845246F5306004FDF2A /* GraphView.swift in Sources */,
 				A1F24E88244CB873007AF4FF /* SceneDelegate.swift in Sources */,

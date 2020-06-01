@@ -12,7 +12,7 @@ struct FilterManager {
     
     private static let defaults = UserDefaults.standard
     
-    enum FilterNames: String {
+    enum DietFilter: String {
         case balanced
         case vegan
         case highProtein = "high-protein"
@@ -21,22 +21,22 @@ struct FilterManager {
         case treeNutFree = "tree-nut-free"
     }
     
-    static func setFilters(_ filter: Filter) {
-        defaults.set(filter.balanced, forKey: FilterNames.balanced.rawValue)
-        defaults.set(filter.vegan, forKey: FilterNames.vegan.rawValue)
-        defaults.set(filter.highProtein, forKey: FilterNames.highProtein.rawValue)
-        defaults.set(filter.sugarConscious, forKey: FilterNames.sugarConscios.rawValue)
-        defaults.set(filter.peanutFree, forKey: FilterNames.peanutFree.rawValue)
-        defaults.set(filter.treenutFree, forKey: FilterNames.treeNutFree.rawValue)
+    static func setFilter(_ filter: Filter) {
+        defaults.set(filter.balanced, forKey: DietFilter.balanced.rawValue)
+        defaults.set(filter.vegan, forKey: DietFilter.vegan.rawValue)
+        defaults.set(filter.highProtein, forKey: DietFilter.highProtein.rawValue)
+        defaults.set(filter.sugarConscious, forKey: DietFilter.sugarConscios.rawValue)
+        defaults.set(filter.peanutFree, forKey: DietFilter.peanutFree.rawValue)
+        defaults.set(filter.treenutFree, forKey: DietFilter.treeNutFree.rawValue)
     }
     
-    static func getFilters() -> Filter {
-        let balanced = defaults.value(forKey: FilterNames.balanced.rawValue) as? Bool
-        let vegan = defaults.value(forKey: FilterNames.vegan.rawValue) as? Bool
-        let highProtein = defaults.value(forKey: FilterNames.highProtein.rawValue) as? Bool
-        let sugarConscious = defaults.value(forKey: FilterNames.sugarConscios.rawValue) as? Bool
-        let peanutFree = defaults.value(forKey: FilterNames.peanutFree.rawValue) as? Bool
-        let treenutFree = defaults.value(forKey: FilterNames.treeNutFree.rawValue) as? Bool
+    static func getFilter() -> Filter {
+        let balanced = defaults.value(forKey: DietFilter.balanced.rawValue) as? Bool
+        let vegan = defaults.value(forKey: DietFilter.vegan.rawValue) as? Bool
+        let highProtein = defaults.value(forKey: DietFilter.highProtein.rawValue) as? Bool
+        let sugarConscious = defaults.value(forKey: DietFilter.sugarConscios.rawValue) as? Bool
+        let peanutFree = defaults.value(forKey: DietFilter.peanutFree.rawValue) as? Bool
+        let treenutFree = defaults.value(forKey: DietFilter.treeNutFree.rawValue) as? Bool
 
         return Filter(
             balanced: balanced ?? false,

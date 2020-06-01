@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserPreference: ObservableObject {
+class DietPreference: ObservableObject {
     
     @Published var selectedIngredients = [String]()
     
@@ -16,7 +16,7 @@ class UserPreference: ObservableObject {
     
     init() {
         
-        self.filter = FilterManager.getFilters()
+        self.filter = FilterManager.getFilter()
         
         guard let selectedIngredients = IngredientManager.selectedIngredients else {return}
         self.selectedIngredients = selectedIngredients

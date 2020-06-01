@@ -13,7 +13,7 @@ struct SelectionView: View {
         
     var itemNames: [String]
     
-    @EnvironmentObject var userPreference: UserPreference
+    @EnvironmentObject var dietPreference: DietPreference
     
     @State private var success = false
         
@@ -24,13 +24,13 @@ struct SelectionView: View {
                 Section(header: Text("Select Your Ingredients"), content: {
                     
                     
-                    Picker(selection: $userPreference.selectedIngredients[0], label: Text("Ingredient 1"), content: {
+                    Picker(selection: $dietPreference.selectedIngredients[0], label: Text("Ingredient 1"), content: {
                         ForEach(itemNames, id: \.self) { name in
                             Text(name)
                         }
                     })
                     
-                    Picker(selection: $userPreference.selectedIngredients[1], label: Text("Ingredient 2"), content: {
+                    Picker(selection: $dietPreference.selectedIngredients[1], label: Text("Ingredient 2"), content: {
                         ForEach(itemNames, id: \.self) { name in
                             Text(name)
                         }
@@ -39,25 +39,25 @@ struct SelectionView: View {
                 })
                 
                 Section(header: Text("Health and Allergen Filters"), content: {
-                    Toggle(isOn: $userPreference.filter.balanced, label: {
+                    Toggle(isOn: $dietPreference.filter.balanced, label: {
                         Text("Balanced")
                     })
                     
-                    Toggle(isOn: $userPreference.filter.vegan, label: {
+                    Toggle(isOn: $dietPreference.filter.vegan, label: {
                         Text("Vegan")
                     })
-                    Toggle(isOn: $userPreference.filter.highProtein, label: {
+                    Toggle(isOn: $dietPreference.filter.highProtein, label: {
                         Text("High Protein")
                     })
                     
-                    Toggle(isOn: $userPreference.filter.sugarConscious, label: {
+                    Toggle(isOn: $dietPreference.filter.sugarConscious, label: {
                         Text("Sugar Conscious")
                     })
-                    Toggle(isOn: $userPreference.filter.peanutFree, label: {
+                    Toggle(isOn: $dietPreference.filter.peanutFree, label: {
                         Text("Peanut Free")
                     })
                     
-                    Toggle(isOn: $userPreference.filter.treenutFree, label: {
+                    Toggle(isOn: $dietPreference.filter.treenutFree, label: {
                         Text("Treenut Free")
                     })
                 })
@@ -88,12 +88,12 @@ struct SelectionView_Previews: PreviewProvider {
 extension SelectionView {
     
     func setIngredients() {
-        IngredientManager.setUserPickedIngredients(userPreference.selectedIngredients)
+        IngredientManager.setUserPickedIngredients(dietPreference.selectedIngredients)
     }
     
     func setFilters() {
-        let filter = self.userPreference.filter
-        FilterManager.setFilters(filter)
+        let filter = self.dietPreference.filter
+        FilterManager.setFilter(filter)
     }
 }
 
